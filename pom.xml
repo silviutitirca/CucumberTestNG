@@ -78,6 +78,13 @@
             <version>6.9.8</version>
             <scope>test</scope>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/io.netty/netty-handler -->
+        <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-handler</artifactId>
+            <version>4.1.72.Final</version>
+        </dependency>
+
     </dependencies>
 
     <build>
