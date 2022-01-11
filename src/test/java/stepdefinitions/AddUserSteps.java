@@ -4,15 +4,12 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import pageobjects.AddNewUser;
 import pageobjects.LoginPage;
 import pageobjects.Menu;
-
-import java.time.Duration;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -61,6 +58,7 @@ public class AddUserSteps extends BaseClass{
         LoginPage loginPage = new LoginPage(driver);
         loginPage.logout();
         System.out.println("Logged out !");
+        driver.close();
     }
 
 }
