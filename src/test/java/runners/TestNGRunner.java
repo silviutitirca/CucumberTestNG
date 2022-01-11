@@ -7,8 +7,12 @@ import io.cucumber.testng.CucumberOptions;
  * @author Silviu_Titirca on 1/10/2022
  */
 @CucumberOptions(
-        features = "src/test/resources/",
+        features = "src/test/resources/Admin.feature",
         glue = {"stepdefinitions"},
-        publish = true)
+        dryRun = false,
+        monochrome = true,
+        plugin = {"pretty","html:test-output"},
+        publish = true,
+        tags = "@Test2")
 public class TestNGRunner extends AbstractTestNGCucumberTests {
 }

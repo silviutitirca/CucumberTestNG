@@ -2,9 +2,10 @@ package stepdefinitions;
 
 import org.apache.commons.lang.RandomStringUtils;
 import org.openqa.selenium.WebDriver;
-import pageobjects.AddNewUser;
+import pageobjects.AdminPage;
 import pageobjects.LoginPage;
 import pageobjects.Menu;
+import pageobjects.PimPage;
 
 import java.time.Duration;
 
@@ -16,7 +17,8 @@ public class BaseClass{
     public WebDriver driver;
     public LoginPage loginPage;
     public Menu menu;
-    public AddNewUser addNewUser;
+    public AdminPage adminPage;
+    public PimPage pimPage;
 
     //Random for unique email
    public static String randomString(){

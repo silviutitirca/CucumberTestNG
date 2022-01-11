@@ -6,16 +6,14 @@ import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import java.awt.*;
-
 /**
  * @author Silviu_Titirca on 1/10/2022
  */
-public class AddNewUser {
+public class AdminPage {
 
     public WebDriver driver;
 
-    public AddNewUser(WebDriver driver) {
+    public AdminPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver,this);
     }

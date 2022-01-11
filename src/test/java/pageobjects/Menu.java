@@ -40,4 +40,7 @@ public class Menu {
     public void clickAdmin(){
         admin.click();
     }
+
+    public void clickPIM(){ pim.click();
+    }
 }
