@@ -3,7 +3,7 @@
 <suite name="All Test Suite">
     <test verbose="2" preserve-order="true" name="C:/Users/Silviu_Titirca/git/CucumberTestNG">
         <classes>
-            <class name="runners.TestNGRunner" />
+            <class name="runners.TestNGRunner"/>
         </classes>
     </test>
 </suite>
