@@ -7,6 +7,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import pageobjects.AdminPage;
 import pageobjects.LoginPage;
 import pageobjects.Menu;
@@ -25,7 +26,10 @@ public class AddUserSteps extends BaseClass{
     public void an_admin_user_is_logged_in() {
 
         WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
+        ChromeOptions options = new ChromeOptions();
+        options.setHeadless(true);
+        driver = new ChromeDriver(options);
+
         setupDriver(driver);
 
         driver.get("https://opensource-demo.orangehrmlive.com/");

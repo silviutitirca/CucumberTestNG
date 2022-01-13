@@ -8,8 +8,7 @@ import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-
-import java.time.Duration;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -24,10 +23,10 @@ public class LoginSteps extends BaseClass{
     @Given("the user is on login page")
     public void the_user_is_on_login_page() {
         WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        driver.manage().timeouts().scriptTimeout(Duration.ofSeconds(30));
-        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(60));
+        ChromeOptions options = new ChromeOptions();
+        options.setHeadless(true);
+        driver = new ChromeDriver(options);
+        setupDriver(driver);
 
         driver.get("https://opensource-demo.orangehrmlive.com/");
 
