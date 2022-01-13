@@ -32,14 +32,15 @@ public class BaseClass{
    public WebDriver setupDriver(){
        WebDriverManager.chromedriver().setup();
        ChromeOptions options = new ChromeOptions();
+       //setHeadless on true if running on docker image
        options.setHeadless(true);
        driver = new ChromeDriver(options);
        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
        driver.manage().timeouts().scriptTimeout(Duration.ofSeconds(30));
        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(60));
        driver.manage().window().maximize();
+       System.out.println("-------------------- Driver initialized --------------");
        return driver;
    }
-
 
 }

@@ -1,7 +1,8 @@
 pageobjects\Menu.class
 stepdefinitions\LoginSteps.class
-pageobjects\AddNewUser.class
+pageobjects\PimPage.class
 runners\TestNGRunner.class
 pageobjects\LoginPage.class
 stepdefinitions\AddUserSteps.class
 stepdefinitions\BaseClass.class
+pageobjects\AdminPage.class

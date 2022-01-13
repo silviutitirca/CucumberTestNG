@@ -1,11 +1,12 @@
 package stepdefinitions;
 
+import io.cucumber.java.After;
+import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -14,12 +15,20 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  */
 public class LoginSteps extends BaseClass{
 
-    private static WebDriver driver;
+    @Before
+    public void driverInitialization(){
+        driver = setupDriver();
+    }
+
+    @After
+    public void closeDriver(){
+        driver.close();
+        System.out.println("-------------------- Driver closed --------------");
+    }
 
     @Given("the user is on login page")
     public void the_user_is_on_login_page() {
 
-        driver = setupDriver();
         driver.get("https://opensource-demo.orangehrmlive.com/");
 
         boolean pageLoaded = driver.findElement(By.xpath("//*[@id=\"divLogo\"]/img")).isDisplayed();
@@ -33,6 +42,7 @@ public class LoginSteps extends BaseClass{
         driver.findElement(By.id("txtPassword")).sendKeys("admin123");
         System.out.println("The user entered username and password");
     }
+
     @When("user hits submit button")
     public void user_hits_submit_button() {
         driver.findElement(By.id("btnLogin")).click();
@@ -50,11 +60,6 @@ public class LoginSteps extends BaseClass{
     public void logout() {
         driver.get("https://opensource-demo.orangehrmlive.com/index.php/auth/logout");
         System.out.println("Logged out !");
-    }
-    @Then("close browser")
-    public void close_browser() {
-        driver.close();
-        System.out.println("Browser closed !");
     }
 
 

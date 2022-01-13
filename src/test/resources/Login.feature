@@ -6,4 +6,3 @@ Feature: Web Login
     And user hits submit button
     Then the user should be logged in successfully
     Then logout
-    And close browser

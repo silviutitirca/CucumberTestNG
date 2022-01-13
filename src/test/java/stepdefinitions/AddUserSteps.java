@@ -1,5 +1,7 @@
 package stepdefinitions;
 
+import io.cucumber.java.After;
+import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -16,12 +18,20 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  */
 public class AddUserSteps extends BaseClass{
 
+    @Before
+    public void driverInitialization(){
+        driver = setupDriver();
+    }
+
+    @After
+    public void closeDriver(){
+        driver.close();
+        System.out.println("-------------------- Driver closed --------------");
+    }
+
     @Given("an admin user is logged in")
     public void an_admin_user_is_logged_in() {
-
-        driver = setupDriver();
         driver.get("https://opensource-demo.orangehrmlive.com/");
-
         LoginPage loginPage = new LoginPage(driver);
         loginPage.login("Admin", "admin123");
         boolean loginSuccessfully = driver.findElement(By.id("welcome")).isDisplayed();
@@ -33,6 +43,7 @@ public class AddUserSteps extends BaseClass{
     public void navigating_to_admin_page() {
         menu = new Menu(driver);
         menu.clickAdmin();
+        System.out.println("Landed on Admin page !");
     }
 
     @Then("new user should be able to be created")
@@ -44,6 +55,7 @@ public class AddUserSteps extends BaseClass{
         adminPage.setUsername(employee);
         adminPage.setPassword(employee);
         adminPage.clickOnSave();
+        System.out.println("New user created successfully !");
     }
 
     @Then("admin logout")
@@ -51,7 +63,6 @@ public class AddUserSteps extends BaseClass{
         LoginPage loginPage = new LoginPage(driver);
         loginPage.logout();
         System.out.println("Logged out !");
-        driver.close();
     }
 
     @When("navigation to PIM page")
@@ -82,8 +93,7 @@ public class AddUserSteps extends BaseClass{
         menu.clickPIM();
         pimPage = new PimPage(driver);
         pimPage.deleteAnEmployee("Georgel Purcel");
-        System.out.println("New employee deleted succesfully !");
-        driver.close();
+        System.out.println("New employee deleted successfully !");
     }
 
 }
