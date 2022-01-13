@@ -6,7 +6,6 @@ import io.cucumber.java.en.When;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import pageobjects.AdminPage;
 import pageobjects.LoginPage;
 import pageobjects.Menu;
@@ -20,12 +19,13 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class AddUserSteps extends BaseClass{
 
     private static WebDriver driver;
+    WebDriverManager wdm = WebDriverManager.chromedriver().browserInDocker();
 
     @Given("an admin user is logged in")
     public void an_admin_user_is_logged_in() {
 
-        WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
+        //WebDriverManager.chromedriver().setup();
+        driver = wdm.create();
         setupDriver(driver);
 
         driver.get("https://opensource-demo.orangehrmlive.com/");
@@ -87,6 +87,7 @@ public class AddUserSteps extends BaseClass{
         menu.clickPIM();
         pimPage = new PimPage(driver);
         pimPage.deleteAnEmployee("Georgel Purcel");
+        wdm.quit();
     }
 
 }

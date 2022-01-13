@@ -7,7 +7,6 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.time.Duration;
 
@@ -19,12 +18,13 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class LoginSteps extends BaseClass{
 
     private static WebDriver driver;
-//    private AddNewUser addUser;
+    WebDriverManager wdm = WebDriverManager.chromedriver().browserInDocker();
 
     @Given("the user is on login page")
     public void the_user_is_on_login_page() {
-        WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
+        //WebDriverManager.chromedriver().setup();
+
+        driver = wdm.create();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.manage().timeouts().scriptTimeout(Duration.ofSeconds(30));
         driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(60));
@@ -62,7 +62,8 @@ public class LoginSteps extends BaseClass{
     }
     @Then("close browser")
     public void close_browser() {
-        driver.close();
+        //driver.close();
+        wdm.quit();
         System.out.println("Browser closed !");
     }
 
