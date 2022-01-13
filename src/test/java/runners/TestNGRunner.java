@@ -12,7 +12,7 @@ import io.cucumber.testng.CucumberOptions;
         dryRun = false,
         monochrome = true,
         plugin = {"pretty","html:test-output"},
-        publish = true)
-        //tags = "@Test2")
+        publish = true,
+        tags = "@Test2")
 public class TestNGRunner extends AbstractTestNGCucumberTests {
 }

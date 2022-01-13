@@ -3,12 +3,9 @@ package stepdefinitions;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -18,16 +15,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class LoginSteps extends BaseClass{
 
     private static WebDriver driver;
-//    private AddNewUser addUser;
 
     @Given("the user is on login page")
     public void the_user_is_on_login_page() {
-        WebDriverManager.chromedriver().setup();
-        ChromeOptions options = new ChromeOptions();
-        options.setHeadless(true);
-        driver = new ChromeDriver(options);
-        setupDriver(driver);
 
+        driver = setupDriver();
         driver.get("https://opensource-demo.orangehrmlive.com/");
 
         boolean pageLoaded = driver.findElement(By.xpath("//*[@id=\"divLogo\"]/img")).isDisplayed();
