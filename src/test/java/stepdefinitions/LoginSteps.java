@@ -1,6 +1,7 @@
 package stepdefinitions;
 
-import io.cucumber.java.Before;
+import io.cucumber.java.AfterAll;
+import io.cucumber.java.BeforeAll;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -14,19 +15,14 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  */
 public class LoginSteps extends BaseClass{
 
-    private static boolean dunit = false;
+    @BeforeAll
+    public static void driverInitialization() {
+       driver = setupDriver();
+    }
 
-    @Before
-    public static void beforeAll() {
-        if(!dunit) {
-            Runtime.getRuntime().addShutdownHook(new Thread() {
-                public void run() {
-                    driver = setupDriver();
-                }
-            });
-            closeDriver(driver);
-            dunit = true;
-        }
+    @AfterAll
+    public static void driverClosure(){
+        closeDriver(driver);
     }
 
     @Given("the user is on login page")
