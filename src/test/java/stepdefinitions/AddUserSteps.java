@@ -1,7 +1,6 @@
 package stepdefinitions;
 
-import io.cucumber.java.AfterAll;
-import io.cucumber.java.BeforeAll;
+import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -18,14 +17,19 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  */
 public class AddUserSteps extends BaseClass{
 
-    @BeforeAll
-    public static void driverInitialization(){
-        driver = setupDriver();
-    }
+    private static boolean dunit = false;
 
-    @AfterAll
-    public static void driverClosure(){
-       closeDriver(driver);
+    @Before
+    public static void beforeAll() {
+        if(!dunit) {
+            Runtime.getRuntime().addShutdownHook(new Thread() {
+                public void run() {
+                    driver = setupDriver();
+                }
+            });
+            closeDriver(driver);
+            dunit = true;
+        }
     }
 
     @Given("an admin user is logged in")
