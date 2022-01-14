@@ -17,7 +17,7 @@ import java.time.Duration;
  */
 public class BaseClass{
 
-    public WebDriver driver;
+    public static WebDriver driver;
     public LoginPage loginPage;
     public Menu menu;
     public AdminPage adminPage;
@@ -29,7 +29,7 @@ public class BaseClass{
        return  generatedString;
    }
 
-   public WebDriver setupDriver(){
+   public static WebDriver setupDriver(){
        WebDriverManager.chromedriver().setup();
        ChromeOptions options = new ChromeOptions();
        //setHeadless on true if running on docker image
@@ -41,6 +41,13 @@ public class BaseClass{
        driver.manage().window().maximize();
        System.out.println("-------------------- Driver initialized --------------");
        return driver;
+   }
+
+   public static void closeDriver(WebDriver driver){
+       if(!driver.toString().contains("(null)")){
+           driver.quit();
+           System.out.println("-------------------- Driver closed --------------");
+       } else System.out.println("-------------------- Driver already closed --------------");
    }
 
 }

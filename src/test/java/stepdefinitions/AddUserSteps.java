@@ -1,7 +1,7 @@
 package stepdefinitions;
 
-import io.cucumber.java.After;
-import io.cucumber.java.Before;
+import io.cucumber.java.AfterAll;
+import io.cucumber.java.BeforeAll;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -18,15 +18,14 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  */
 public class AddUserSteps extends BaseClass{
 
-    @Before
-    public void driverInitialization(){
+    @BeforeAll
+    public static void driverInitialization(){
         driver = setupDriver();
     }
 
-    @After
-    public void closeDriver(){
-        driver.close();
-        System.out.println("-------------------- Driver closed --------------");
+    @AfterAll
+    public static void driverClosure(){
+       closeDriver(driver);
     }
 
     @Given("an admin user is logged in")
